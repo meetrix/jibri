@@ -125,7 +125,8 @@ class JibriSelenium(
                 "--enable-logging",
                 "--vmodule=*=3",
                 "--disable-infobars",
-                "--alsa-output-device=plug:amix"
+                "--alsa-output-device=plug:amix",
+                "--use-fake-ui-for-media-stream"
         )
         chromeOptions.addArguments(jibriSeleniumOptions.extraChromeCommandLineFlags)
         val chromeDriverService = ChromeDriverService.Builder().withEnvironment(
