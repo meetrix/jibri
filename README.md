@@ -165,5 +165,5 @@ build debian package
 
 install debian
 
-`sudo apt install ./-ARTIFACTS/jibri_7.0.-1_all.deb`
+`sudo apt install /home/ubuntu/jibri/-ARTIFACTS/jibri_9.0.-1_all.deb`
 

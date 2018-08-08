@@ -40,29 +40,30 @@ class CallPage(driver: RemoteWebDriver) : AbstractPageObject(driver) {
         if (!super.visit(url)) {
             return false
         }
-        val start = System.currentTimeMillis()
-        return try {
-            WebDriverWait(driver, 30).until {
-                val result = driver.executeScript("""
-                    try {
-                        return APP.conference._room.isJoined();
-                    } catch (e) {
-                        return e.message;
-                    }
-                    """.trimMargin()
-                )
-                when (result) {
-                    is Boolean -> result
-                    else -> false
-                }
-            }
-            val totalTime = System.currentTimeMillis() - start
-            logger.info("Waited $totalTime milliseconds for call page to load")
-            true
-        } catch (t: TimeoutException) {
-            logger.error("Timed out waiting for call page to load")
-            false
-        }
+        return true;
+//        val start = System.currentTimeMillis()
+//        return try {
+//            WebDriverWait(driver, 30).until {
+//                val result = driver.executeScript("""
+//                    try {
+//                        return APP.conference._room.isJoined();
+//                    } catch (e) {
+//                        return e.message;
+//                    }
+//                    """.trimMargin()
+//                )
+//                when (result) {
+//                    is Boolean -> result
+//                    else -> false
+//                }
+//            }
+//            val totalTime = System.currentTimeMillis() - start
+//            logger.info("Waited $totalTime milliseconds for call page to load")
+//            true
+//        } catch (t: TimeoutException) {
+//            logger.error("Timed out waiting for call page to load")
+//            false
+//        }
     }
 
     fun getNumParticipants(): Long {
