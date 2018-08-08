@@ -151,3 +151,15 @@ Make sure to update Jibri's config.json appropriately to match any config done a
 ## Start Jibri
 Once you have configured `config.json`, start the jibri service:
 `sudo systemctl restart jibri`
+
+## jibri command
+`export WORKSPACE="/home/ubuntu/jibri"`
+
+build jar file
+
+`resources/jenkins/build.sh`
+
+build debian package
+
+`resources/jenkins/release.sh Major`
+
