@@ -167,3 +167,13 @@ install debian
 
 `sudo apt install /home/ubuntu/jibri/-ARTIFACTS/jibri_9.0.-1_all.deb`
 
+http start recording
+
+`curl -X POST  http://127.0.0.1:3333/jibri/api/internal/v1.0/startService -H "Content-Type: application/json" -d @`
+
+start recording
+json data format
+
+{
+
+}
