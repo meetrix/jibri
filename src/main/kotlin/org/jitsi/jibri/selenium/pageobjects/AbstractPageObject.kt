@@ -25,7 +25,7 @@ import org.openqa.selenium.remote.RemoteWebDriver
  */
 open class AbstractPageObject(protected val driver: RemoteWebDriver) {
     open fun visit(url: String): Boolean {
-       // driver.get(url)
+        // driver.get(url)
         driver.get("https://virtualroom.meet.meetrix.io/classroom/1234")
         return true
     }
