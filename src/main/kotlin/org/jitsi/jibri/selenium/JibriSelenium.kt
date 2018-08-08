@@ -206,7 +206,7 @@ class JibriSelenium(
         }
         addEmptyCallDetector()
         addParticipantTracker()
-        currCallUrl = callUrlInfo.callUrl
+        currCallUrl = "https://virtualroom.meet.meetrix.io/classroom/1234"//callUrlInfo.callUrl
         return true
     }
 
