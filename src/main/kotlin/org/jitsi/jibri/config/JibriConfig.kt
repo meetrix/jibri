@@ -103,7 +103,7 @@ data class JibriConfig(
     @JsonProperty("enable_stats_d")
     val enabledStatsD: Boolean = true,
     @JsonProperty("finalize_recording_script_path")
-    val finalizeRecordingScriptPath: String,
-    @JsonProperty("xmpp_environments")
-    val xmppEnvironments: List<XmppEnvironmentConfig>
+    val finalizeRecordingScriptPath: String
+//    @JsonProperty("xmpp_environments")
+//    val xmppEnvironments: List<XmppEnvironmentConfig>
 )
