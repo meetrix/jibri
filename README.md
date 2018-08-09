@@ -171,9 +171,11 @@ http start recording
 
 `curl -X POST  http://127.0.0.1:3333/jibri/api/v1.0/startService -H "Content-Type: application/json" -d @./startservice.json`
 
-start recording
-json data format
+jibri start recording
 
-{
+`curl -X POST http://35.162.29.199:2222/jibri/api/v1.0/startService -H "Content-Type: application/json" -d @./startservice.json
+`
 
-}
+jibri stop recording
+
+`curl -X POST http://35.162.29.199:2222/jibri/api/v1.0/stopService`
