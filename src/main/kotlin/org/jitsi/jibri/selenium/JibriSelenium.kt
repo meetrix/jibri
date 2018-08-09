@@ -205,8 +205,8 @@ class JibriSelenium(
         if (!CallPage(chromeDriver).visit(callUrlInfo.callUrl)) {
             return false
         }
-        addEmptyCallDetector()
-        addParticipantTracker()
+        //addEmptyCallDetector()
+        //addParticipantTracker()
         currCallUrl = callUrlInfo.callUrl
         return true
     }
