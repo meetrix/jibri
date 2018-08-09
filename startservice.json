@@ -1,3 +1,22 @@
 {
-  "sinkType":"file"
+  "sessionId":"1231231231",
+  "callParams":{
+    "callUrlInfo":{
+      "baseUrl":"",
+      "callName":"",
+      "urlParams":["",""]
+    }
+  },
+  "callLoginParams":{
+    "domain":"",
+    "username":"",
+    "password":""
+  },
+  "sinkType":"file",
+  "youTubeStreamKey":"",
+  "sipClientParams":{
+    "sipAddress":"",
+    "displayName":""
+  }
+
 }
