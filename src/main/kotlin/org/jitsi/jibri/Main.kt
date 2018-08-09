@@ -108,8 +108,8 @@ fun main(args: Array<String>) {
     launchHttpServer(3333, internalHttpApi)
 
     // XmppApi
-    val xmppApi = XmppApi(jibriManager = jibri, xmppConfigs = jibriConfig.xmppEnvironments)
-    xmppApi.start()
+//    val xmppApi = XmppApi(jibriManager = jibri, xmppConfigs = jibriConfig.xmppEnvironments)
+//    xmppApi.start()
 
     // HttpApi
     launchHttpServer(2222, HttpApi(jibri))
