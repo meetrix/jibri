@@ -83,62 +83,62 @@ class XmppApi(
         )
 
         // Join all the MUCs we've been told to
-//        for (config in xmppConfigs) {
-//            for (host in config.xmppServerHosts) {
-//                logger.info("Connecting to xmpp environment on $host with config $config")
-//                val configBuilder = XMPPTCPConnectionConfiguration.builder()
-//                    .setHost(host)
-//                    .setXmppDomain(config.controlLogin.domain)
-//                    .setUsernameAndPassword(config.controlLogin.username, config.controlLogin.password)
-//                if (config.trustAllXmppCerts) {
-//                    logger.info("The trustAllXmppCerts config is enabled for this domain, " +
-//                            "all XMPP server provided certificates will be accepted")
-//                    configBuilder.setCustomX509TrustManager(TrustAllX509TrustManager())
-//                    configBuilder.setHostnameVerifier(TrustAllHostnameVerifier())
-//                }
-//                try {
-//                    val mucClient =
-//                        mucClientProvider(configBuilder.build(), "${config.name}: ${config.controlLogin.domain}@$host")
-//                    mucClient.addIqRequestHandler(object : JibriSyncIqRequestHandler() {
-//                        override fun handleJibriIqRequest(jibriIq: JibriIq): IQ {
-//                            return handleJibriIq(jibriIq, config, mucClient)
-//                        }
-//                    })
-//                    val recordingMucJid = JidCreate.bareFrom("${config.controlMuc.roomName}@${config.controlMuc.domain}")
-//                    val sipMucJid: BareJid? = config.sipControlMuc?.let {
-//                        JidCreate.entityBareFrom("${config.sipControlMuc.roomName}@${config.sipControlMuc.domain}")
-//                    }
-//                    val updatePresence: (JibriStatusPacketExt.Status) -> Unit = { status ->
-//                        logger.info("Jibri reports its status is now $status, publishing presence to connection ${config.name}")
-//                        // We need to update our presence in potentially 2 MUCs: the recording muc and the SIP
-//                        // MUC
-//                        mucClient.sendStanza(JibriPresenceHelper.createPresence(status, recordingMucJid))
-//                        sipMucJid?.let {
-//                            mucClient.sendStanza(JibriPresenceHelper.createPresence(status, it))
-//                        }
-//                    }
-//
-//                    jibriManager.addStatusHandler(updatePresence)
-//                    // The recording control muc
-//                    mucClient.createOrJoinMuc(
-//                        recordingMucJid.asEntityBareJidIfPossible(),
-//                        Resourcepart.from(config.controlMuc.nickname),
-//                        ::updatePresenceStanza
-//                    )
-//                    // The SIP control muc
-//                    config.sipControlMuc?.let {
-//                        logger.info("SIP control muc is defined for environment ${config.name}, joining")
-//                        mucClient.createOrJoinMuc(
-//                            JidCreate.entityBareFrom("${config.sipControlMuc.roomName}@${config.sipControlMuc.domain}"),
-//                            Resourcepart.from(config.sipControlMuc.nickname),
-//                            ::updatePresenceStanza
-//                        )
-//                    }
-//                } catch (e: Exception) {
-//                    logger.error("Error connecting to xmpp environment: $e")
-//                }
-//            }
-//        }
+        for (config in xmppConfigs) {
+            for (host in config.xmppServerHosts) {
+                logger.info("Connecting to xmpp environment on $host with config $config")
+                val configBuilder = XMPPTCPConnectionConfiguration.builder()
+                    .setHost(host)
+                    .setXmppDomain(config.controlLogin.domain)
+                    .setUsernameAndPassword(config.controlLogin.username, config.controlLogin.password)
+                if (config.trustAllXmppCerts) {
+                    logger.info("The trustAllXmppCerts config is enabled for this domain, " +
+                            "all XMPP server provided certificates will be accepted")
+                    configBuilder.setCustomX509TrustManager(TrustAllX509TrustManager())
+                    configBuilder.setHostnameVerifier(TrustAllHostnameVerifier())
+                }
+                try {
+                    val mucClient =
+                        mucClientProvider(configBuilder.build(), "${config.name}: ${config.controlLogin.domain}@$host")
+                    mucClient.addIqRequestHandler(object : JibriSyncIqRequestHandler() {
+                        override fun handleJibriIqRequest(jibriIq: JibriIq): IQ {
+                            return handleJibriIq(jibriIq, config, mucClient)
+                        }
+                    })
+                    val recordingMucJid = JidCreate.bareFrom("${config.controlMuc.roomName}@${config.controlMuc.domain}")
+                    val sipMucJid: BareJid? = config.sipControlMuc?.let {
+                        JidCreate.entityBareFrom("${config.sipControlMuc.roomName}@${config.sipControlMuc.domain}")
+                    }
+                    val updatePresence: (JibriStatusPacketExt.Status) -> Unit = { status ->
+                        logger.info("Jibri reports its status is now $status, publishing presence to connection ${config.name}")
+                        // We need to update our presence in potentially 2 MUCs: the recording muc and the SIP
+                        // MUC
+                        mucClient.sendStanza(JibriPresenceHelper.createPresence(status, recordingMucJid))
+                        sipMucJid?.let {
+                            mucClient.sendStanza(JibriPresenceHelper.createPresence(status, it))
+                        }
+                    }
+
+                    jibriManager.addStatusHandler(updatePresence)
+                    // The recording control muc
+                    mucClient.createOrJoinMuc(
+                        recordingMucJid.asEntityBareJidIfPossible(),
+                        Resourcepart.from(config.controlMuc.nickname),
+                        ::updatePresenceStanza
+                    )
+                    // The SIP control muc
+                    config.sipControlMuc?.let {
+                        logger.info("SIP control muc is defined for environment ${config.name}, joining")
+                        mucClient.createOrJoinMuc(
+                            JidCreate.entityBareFrom("${config.sipControlMuc.roomName}@${config.sipControlMuc.domain}"),
+                            Resourcepart.from(config.sipControlMuc.nickname),
+                            ::updatePresenceStanza
+                        )
+                    }
+                } catch (e: Exception) {
+                    logger.error("Error connecting to xmpp environment: $e")
+                }
+            }
+        }
     }
 
     /**

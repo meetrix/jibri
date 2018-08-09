@@ -34,7 +34,7 @@ import org.glassfish.jersey.server.ResourceConfig
 import org.glassfish.jersey.servlet.ServletContainer
 import org.jitsi.jibri.api.http.HttpApi
 import org.jitsi.jibri.api.http.internal.InternalHttpApi
-//import org.jitsi.jibri.api.xmpp.XmppApi
+import org.jitsi.jibri.api.xmpp.XmppApi
 import org.jitsi.jibri.config.JibriConfig
 import org.jitsi.jibri.statsd.JibriStatsDClient
 import org.jitsi.jibri.util.extensions.error
@@ -108,8 +108,8 @@ fun main(args: Array<String>) {
     launchHttpServer(3333, internalHttpApi)
 
     // XmppApi
-//    val xmppApi = XmppApi(jibriManager = jibri, xmppConfigs = jibriConfig.xmppEnvironments)
-//    xmppApi.start()
+    val xmppApi = XmppApi(jibriManager = jibri, xmppConfigs = jibriConfig.xmppEnvironments)
+    xmppApi.start()
 
     // HttpApi
     launchHttpServer(2222, HttpApi(jibri))
