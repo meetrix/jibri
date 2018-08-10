@@ -77,7 +77,7 @@ data class FileRecordingRequestParams(
      * The login information needed to appear invisible in
      * the call
      */
-    //val callLoginParams: XmppCredentials
+    val callLoginParams: null//XmppCredentials
 )
 
 /**
