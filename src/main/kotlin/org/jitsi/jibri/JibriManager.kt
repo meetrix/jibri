@@ -72,7 +72,7 @@ data class FileRecordingRequestParams(
     /**
      * The ID of this session
      */
-    val sessionId: String
+    val sessionId: String,
     /**
      * The login information needed to appear invisible in
      * the call
