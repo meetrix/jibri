@@ -18,7 +18,7 @@
 package org.jitsi.jibri.selenium
 
 import org.jitsi.jibri.CallUrlInfo
-import org.jitsi.jibri.config.XmppCredentials
+//import org.jitsi.jibri.config.XmppCredentials
 import org.jitsi.jibri.selenium.pageobjects.CallPage
 import org.jitsi.jibri.selenium.pageobjects.HomePage
 import org.jitsi.jibri.selenium.util.BrowserFileHandler
@@ -197,10 +197,10 @@ class JibriSelenium(
             "email" to jibriSeleniumOptions.email,
             "callStatsUserName" to "jibri"
         )
-        xmppCredentials?.let {
-            localStorageValues["xmpp_username_override"] = "${xmppCredentials.username}@${xmppCredentials.domain}"
-            localStorageValues["xmpp_password_override"] = xmppCredentials.password
-        }
+//        xmppCredentials?.let {
+//            localStorageValues["xmpp_username_override"] = "${xmppCredentials.username}@${xmppCredentials.domain}"
+//            localStorageValues["xmpp_password_override"] = xmppCredentials.password
+//        }
         //setLocalStorageValues(localStorageValues)
         if (!CallPage(chromeDriver).visit(callUrlInfo.callUrl)) {
             return false

@@ -19,7 +19,7 @@ package org.jitsi.jibri
 
 import net.java.sip.communicator.impl.protocol.jabber.extensions.jibri.JibriStatusPacketExt
 import org.jitsi.jibri.config.JibriConfig
-import org.jitsi.jibri.config.XmppCredentials
+//import org.jitsi.jibri.config.XmppCredentials
 import org.jitsi.jibri.health.EnvironmentContext
 import org.jitsi.jibri.health.JibriHealth
 import org.jitsi.jibri.selenium.CallParams
@@ -72,12 +72,12 @@ data class FileRecordingRequestParams(
     /**
      * The ID of this session
      */
-    val sessionId: String,
+    val sessionId: String
     /**
      * The login information needed to appear invisible in
      * the call
      */
-    val callLoginParams: XmppCredentials
+    //val callLoginParams: XmppCredentials
 )
 
 /**

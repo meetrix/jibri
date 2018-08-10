@@ -21,7 +21,7 @@ import org.jitsi.jibri.FileRecordingRequestParams
 import org.jitsi.jibri.JibriManager
 import org.jitsi.jibri.RecordingSinkType
 import org.jitsi.jibri.StartServiceResult
-import org.jitsi.jibri.config.XmppCredentials
+//import org.jitsi.jibri.config.XmppCredentials
 import org.jitsi.jibri.selenium.CallParams
 import org.jitsi.jibri.service.ServiceParams
 import org.jitsi.jibri.service.impl.SipGatewayServiceParams
@@ -46,7 +46,7 @@ data class StartServiceParams(
      * [RecordingSinkType.FILE] or [RecordingSinkType.STREAM] in order
      * to make the recorder 'invisible'
      */
-    val callLoginParams: XmppCredentials? = null,
+    //val callLoginParams: XmppCredentials? = null,
     val sinkType: RecordingSinkType,
     val youTubeStreamKey: String? = null,
     /**
