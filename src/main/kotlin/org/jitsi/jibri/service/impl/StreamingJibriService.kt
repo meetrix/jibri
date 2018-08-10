@@ -102,8 +102,8 @@ class StreamingJibriService(private val streamingParams: StreamingParams) : Jibr
 
     override fun start(): Boolean {
         if (!jibriSelenium.joinCall(
-                streamingParams.callParams.callUrlInfo.copy(urlParams = RECORDING_URL_OPTIONS),
-                streamingParams.callLoginParams)
+                streamingParams.callParams.callUrlInfo.copy(urlParams = RECORDING_URL_OPTIONS)/*,
+                streamingParams.callLoginParams*/)
         ) {
             logger.error("Selenium failed to join the call")
             return false

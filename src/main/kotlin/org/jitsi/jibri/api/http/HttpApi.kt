@@ -88,20 +88,20 @@ class HttpApi(private val jibriManager: JibriManager) {
         val result = when (startServiceParams.sinkType) {
             RecordingSinkType.FILE -> run {
                 // If it's a file recording, it must have the callLoginParams set
-                val callLoginParams = startServiceParams.callLoginParams ?: return@run StartServiceResult.ERROR
+                //val callLoginParams = startServiceParams.callLoginParams ?: return@run StartServiceResult.ERROR
                 jibriManager.startFileRecording(
                     ServiceParams(usageTimeoutMinutes = 0),
-                    FileRecordingRequestParams(startServiceParams.callParams, startServiceParams.sessionId, callLoginParams),
+                    FileRecordingRequestParams(startServiceParams.callParams, startServiceParams.sessionId/*, callLoginParams*/),
                     environmentContext = null
                 )
             }
             RecordingSinkType.STREAM -> run {
                 val youTubeStreamKey = startServiceParams.youTubeStreamKey ?: return@run StartServiceResult.ERROR
                 // If it's a stream, it must have the callLoginParams set
-                val callLoginParams = startServiceParams.callLoginParams ?: return@run StartServiceResult.ERROR
+               // val callLoginParams = startServiceParams.callLoginParams ?: return@run StartServiceResult.ERROR
                 jibriManager.startStreaming(
                     ServiceParams(usageTimeoutMinutes = 0),
-                    StreamingParams(startServiceParams.callParams, startServiceParams.sessionId, callLoginParams, youTubeStreamKey),
+                    StreamingParams(startServiceParams.callParams, startServiceParams.sessionId/*, callLoginParams*/, youTubeStreamKey),
                     environmentContext = null
                 )
             }
