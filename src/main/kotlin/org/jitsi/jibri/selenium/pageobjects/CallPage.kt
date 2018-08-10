@@ -18,11 +18,8 @@
 package org.jitsi.jibri.selenium.pageobjects
 
 import org.jitsi.jibri.util.extensions.debug
-import org.jitsi.jibri.util.extensions.error
-import org.openqa.selenium.TimeoutException
 import org.openqa.selenium.remote.RemoteWebDriver
 import org.openqa.selenium.support.PageFactory
-import org.openqa.selenium.support.ui.WebDriverWait
 import java.util.logging.Logger
 
 /**
@@ -40,7 +37,7 @@ class CallPage(driver: RemoteWebDriver) : AbstractPageObject(driver) {
         if (!super.visit(url)) {
             return false
         }
-        return true;
+        return true
 //        val start = System.currentTimeMillis()
 //        return try {
 //            WebDriverWait(driver, 30).until {

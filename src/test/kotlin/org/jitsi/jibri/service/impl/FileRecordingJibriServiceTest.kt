@@ -29,7 +29,7 @@ import io.kotlintest.shouldBe
 import io.kotlintest.specs.ShouldSpec
 import org.jitsi.jibri.CallUrlInfo
 import org.jitsi.jibri.capture.Capturer
-import org.jitsi.jibri.config.XmppCredentials
+//import org.jitsi.jibri.config.XmppCredentials
 import org.jitsi.jibri.selenium.CallParams
 import org.jitsi.jibri.selenium.JibriSelenium
 import org.jitsi.jibri.sink.Sink
@@ -55,18 +55,18 @@ internal class FileRecordingJibriServiceTest : ShouldSpec() {
     private val callParams = CallParams(
         CallUrlInfo("baseUrl", "callName")
     )
-    private val callLoginParams = XmppCredentials(
+    /*private val callLoginParams = XmppCredentials(
         "domain",
         "username",
         "password"
-    )
+    )*/
     private val recordingsDir = fs.getPath("/path/to/recordings")
     private val finalizeScript = fs.getPath("/path/to/finalize")
     private val sessionId = "session_id"
     private val fileRecordingParams = FileRecordingParams(
         callParams,
         sessionId,
-        callLoginParams,
+        /*callLoginParams,*/
         finalizeScript,
         recordingsDir
     )
@@ -94,7 +94,7 @@ internal class FileRecordingJibriServiceTest : ShouldSpec() {
                 }
             }
             "when joining the call succeeds" {
-                whenever(jibriSelenium.joinCall(any(), any())).thenReturn(true)
+                whenever(jibriSelenium.joinCall(any()/*, any()*/)).thenReturn(true)
                 "and the capturer starts successfully" {
                     whenever(capturer.start(sinkCapturer.capture())).thenReturn(true)
                     "and the recordings directory doesn't exist" {
@@ -103,7 +103,7 @@ internal class FileRecordingJibriServiceTest : ShouldSpec() {
                             verify(capturer).start(any())
                         }
                         should("have selenium join the call") {
-                            verify(jibriSelenium).joinCall(any(), any())
+                            verify(jibriSelenium).joinCall(any()/*, any()*/)
                         }
                         should("return true") {
                             startResult shouldBe true
@@ -136,7 +136,7 @@ internal class FileRecordingJibriServiceTest : ShouldSpec() {
                 }
             }
             "when joining the call fails" {
-                whenever(jibriSelenium.joinCall(any(), any())).thenReturn(false)
+                whenever(jibriSelenium.joinCall(any()/*, any()*/)).thenReturn(false)
                 should("return false") {
                     fileRecordingJibriService.start() shouldBe false
                 }
@@ -144,7 +144,7 @@ internal class FileRecordingJibriServiceTest : ShouldSpec() {
         }
         "stop" {
             "after a successful start" {
-                whenever(jibriSelenium.joinCall(any(), any())).thenReturn(true)
+                whenever(jibriSelenium.joinCall(any()/*, any()*/)).thenReturn(true)
                 whenever(jibriSelenium.getParticipants()).thenReturn(listOf())
                 whenever(capturer.start(any())).thenReturn(true)
 

@@ -40,7 +40,7 @@ import org.jitsi.jibri.CallUrlInfo
 import org.jitsi.jibri.JibriManager
 import org.jitsi.jibri.RecordingSinkType
 import org.jitsi.jibri.StartServiceResult
-import org.jitsi.jibri.config.XmppCredentials
+//import org.jitsi.jibri.config.XmppCredentials
 import org.jitsi.jibri.health.EnvironmentContext
 import org.jitsi.jibri.health.JibriHealth
 import org.jitsi.jibri.selenium.CallParams
@@ -141,11 +141,11 @@ class HttpApiTest : ShouldSpec() {
                     callParams = CallParams(
                         callUrlInfo = CallUrlInfo("https://meet.jit.si", "callName")
                     ),
-                    callLoginParams = XmppCredentials(
+                    /*callLoginParams = XmppCredentials(
                         domain = "xmpp_domain",
                         username = "xmpp_username",
                         password = "xmpp_password"
-                    ),
+                    ),*/
                     sinkType = RecordingSinkType.FILE
                 )
                 val json = jacksonObjectMapper().writeValueAsString(startServiceRequest)
