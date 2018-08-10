@@ -98,7 +98,7 @@ class HttpApi(private val jibriManager: JibriManager) {
             RecordingSinkType.STREAM -> run {
                 val youTubeStreamKey = startServiceParams.youTubeStreamKey ?: return@run StartServiceResult.ERROR
                 // If it's a stream, it must have the callLoginParams set
-               // val callLoginParams = startServiceParams.callLoginParams ?: return@run StartServiceResult.ERROR
+                // val callLoginParams = startServiceParams.callLoginParams ?: return@run StartServiceResult.ERROR
                 jibriManager.startStreaming(
                     ServiceParams(usageTimeoutMinutes = 0),
                     StreamingParams(startServiceParams.callParams, startServiceParams.sessionId/*, callLoginParams*/, youTubeStreamKey),
