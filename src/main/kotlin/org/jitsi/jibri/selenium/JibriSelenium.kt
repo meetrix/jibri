@@ -189,7 +189,7 @@ class JibriSelenium(
     /**
      * Join a a web call with Selenium
      */
-    fun joinCall(callUrlInfo: CallUrlInfo, xmppCredentials: XmppCredentials? = null): Boolean {
+    fun joinCall(callUrlInfo: CallUrlInfo/*, xmppCredentials: XmppCredentials? = null*/): Boolean {
         HomePage(chromeDriver).visit(callUrlInfo.baseUrl)
 
         val localStorageValues = mutableMapOf(

@@ -72,12 +72,12 @@ data class FileRecordingRequestParams(
     /**
      * The ID of this session
      */
-    val sessionId: String,
+    val sessionId: String
     /**
      * The login information needed to appear invisible in
      * the call
      */
-    val callLoginParams: null//XmppCredentials
+    //val callLoginParams: null//XmppCredentials
 )
 
 /**
@@ -122,7 +122,7 @@ class JibriManager(
             FileRecordingParams(
                 fileRecordingRequestParams.callParams,
                 fileRecordingRequestParams.sessionId,
-                fileRecordingRequestParams.callLoginParams,
+                //fileRecordingRequestParams.callLoginParams,
                 fileSystem.getPath(config.finalizeRecordingScriptPath),
                 fileSystem.getPath(config.recordingDirectory)
             ),

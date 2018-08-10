@@ -131,8 +131,8 @@ class FileRecordingJibriService(
             return false
         }
         if (!jibriSelenium.joinCall(
-                fileRecordingParams.callParams.callUrlInfo.copy(urlParams = RECORDING_URL_OPTIONS),
-                fileRecordingParams.callLoginParams)
+                fileRecordingParams.callParams.callUrlInfo.copy(urlParams = RECORDING_URL_OPTIONS)/*,
+                fileRecordingParams.callLoginParams*/)
         ) {
             logger.error("Selenium failed to join the call")
             return false
