@@ -7,6 +7,11 @@
       "urlParams":["",""]
     }
   },
+  "callLoginParams":{
+    "domain":"",
+    "username":"",
+    "password":""
+  },
   "sinkType":"file",
   "youTubeStreamKey":"",
   "sipClientParams":{
