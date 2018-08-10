@@ -192,11 +192,11 @@ class JibriSelenium(
     fun joinCall(callUrlInfo: CallUrlInfo/*, xmppCredentials: XmppCredentials? = null*/): Boolean {
         HomePage(chromeDriver).visit(callUrlInfo.baseUrl)
 
-        val localStorageValues = mutableMapOf(
-            "displayname" to jibriSeleniumOptions.displayName,
-            "email" to jibriSeleniumOptions.email,
-            "callStatsUserName" to "jibri"
-        )
+//        val localStorageValues = mutableMapOf(
+//            "displayname" to jibriSeleniumOptions.displayName,
+//            "email" to jibriSeleniumOptions.email,
+//            "callStatsUserName" to "jibri"
+//        )
 //        xmppCredentials?.let {
 //            localStorageValues["xmpp_username_override"] = "${xmppCredentials.username}@${xmppCredentials.domain}"
 //            localStorageValues["xmpp_password_override"] = xmppCredentials.password
