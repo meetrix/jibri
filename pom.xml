@@ -208,7 +208,7 @@
                             </args>
                         </configuration>
                     </execution>
-                    <execution>
+                    <!--execution>
                         <id>test-compile</id>
                         <goals> <goal>test-compile</goal> </goals>
                         <configuration>
@@ -216,7 +216,7 @@
                                 <sourceDir>${project.basedir}/src/test/kotlin</sourceDir>
                             </sourceDirs>
                         </configuration>
-                    </execution>
+                    </execution-->
                 </executions>
             </plugin>
             <plugin>
