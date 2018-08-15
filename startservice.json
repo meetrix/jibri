@@ -3,14 +3,9 @@
   "callParams":{
     "callUrlInfo":{
       "baseUrl":"",
-      "callName":"",
+      "callName":"test",
       "urlParams":["",""]
     }
-  },
-  "callLoginParams":{
-    "domain":"",
-    "username":"",
-    "password":""
   },
   "sinkType":"file",
   "youTubeStreamKey":"",
