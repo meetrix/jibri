@@ -194,7 +194,7 @@ class JibriSelenium(
         logger.info("call ur info")
         logger.info(callUrlInfo.baseUrl);
         logger.info(callUrlInfo.callUrl);
-        logger.info(callUrlInfo.urlParams[0]);
+        println("pppppppppp$callUrlInfo");
 
 //        val localStorageValues = mutableMapOf(
 //            "displayname" to jibriSeleniumOptions.displayName,
