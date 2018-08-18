@@ -30,15 +30,16 @@ import java.util.Objects
 data class CallUrlInfo(
     val baseUrl: String = "",
     val callName: String = "",
+    val token: String = "",
     private val urlParams: List<String> = listOf()
 ) {
     @get:JsonIgnore
     val callUrl: String
         get() {
             return if (urlParams.isNotEmpty()) {
-                "$baseUrl/$callName#${urlParams.joinToString("&")}"
+                "$baseUrl/$callName?token=${token}#${urlParams.joinToString("&")}"
             } else {
-                "$baseUrl/$callName"
+                "$baseUrl/$callName?token=${token}"
             }
         }
 
