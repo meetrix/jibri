@@ -193,7 +193,7 @@ class JibriSelenium(
         HomePage(chromeDriver).visit(callUrlInfo.baseUrl)
         logger.info("call ur info")
         logger.info(callUrlInfo.baseUrl);
-        logger.info(callUrlInfo);
+        logger.info(callUrlInfo.callUrl);
 
 //        val localStorageValues = mutableMapOf(
 //            "displayname" to jibriSeleniumOptions.displayName,
