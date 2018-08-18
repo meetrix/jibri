@@ -3,7 +3,7 @@
   "callParams":{
     "callUrlInfo":{
       "baseUrl":"https://classroom.meetrix.io",
-      "callName":"1234",
+      "callName":"1234?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyTmFtZSI6InN1cHVuX3JveCIsImZ1bGxOYW1lIjoiU3VwdW4gUm94In0.HE3zcFVtV0pymuxsKFvPxVIH6lT9U-8mO70qxo8MHw4",
       "urlParams":["token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyTmFtZSI6InN1cHVuX3JveCIsImZ1bGxOYW1lIjoiU3VwdW4gUm94In0.HE3zcFVtV0pymuxsKFvPxVIH6lT9U-8mO70qxo8MHw4",""]
     }
   },

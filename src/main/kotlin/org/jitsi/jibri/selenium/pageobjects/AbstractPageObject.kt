@@ -25,8 +25,8 @@ import org.openqa.selenium.remote.RemoteWebDriver
  */
 open class AbstractPageObject(protected val driver: RemoteWebDriver) {
     open fun visit(url: String): Boolean {
-        // driver.get(url)
-        driver.get("https://classroom.meetrix.io/1234?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyTmFtZSI6InN1cHVuX3JveCIsImZ1bGxOYW1lIjoiU3VwdW4gUm94In0.HE3zcFVtV0pymuxsKFvPxVIH6lT9U-8mO70qxo8MHw4")
+        driver.get(url)
+        //driver.get("https://classroom.meetrix.io/1234?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyTmFtZSI6InN1cHVuX3JveCIsImZ1bGxOYW1lIjoiU3VwdW4gUm94In0.HE3zcFVtV0pymuxsKFvPxVIH6lT9U-8mO70qxo8MHw4")
         return true
     }
 }
