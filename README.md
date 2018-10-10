@@ -162,6 +162,9 @@ build jar file
 build debian package
 
 `resources/jenkins/release.sh Major`
+Issues
+
+`dch command not found : apt-get install devscripts`
 
 install debian
 
