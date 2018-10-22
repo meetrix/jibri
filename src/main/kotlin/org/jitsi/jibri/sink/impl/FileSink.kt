@@ -31,7 +31,8 @@ class FileSink(recordingsDirectory: Path, callName: String, extension: String = 
     init {
         val currentTime = LocalDateTime.now()
         val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd-HH-mm-ss")
-        val filename = "${callName}_${currentTime.format(formatter)}.$extension"
+        //val filename = "${callName}_${currentTime.format(formatter)}.$extension"
+        val filename = "${callName}.$extension"
         file = recordingsDirectory.resolve(filename)
     }
     override val path: String = file.toString()
