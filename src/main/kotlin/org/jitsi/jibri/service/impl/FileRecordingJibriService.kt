@@ -182,6 +182,8 @@ class FileRecordingJibriService(
         processMonitorTask?.cancel(false)
         logger.info("Stopping capturer")
         capturer.stop()
+        logger.info("finalize recording")
+        finalize()
         logger.info("Quitting selenium")
         val participants = jibriSelenium.getParticipants()
         logger.info("Participants in this recording: $participants")
@@ -196,7 +198,6 @@ class FileRecordingJibriService(
         }
         jibriSelenium.leaveCallAndQuitBrowser()
         logger.info("Finalizing the recording")
-        finalize()
     }
 
     /**

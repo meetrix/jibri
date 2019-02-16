@@ -182,3 +182,7 @@ jibri start recording
 jibri stop recording
 
 `curl -X POST http://13.229.229.138:2222/jibri/api/v1.0/stopService`
+
+helth check
+`curl -X GET http://34.222.163.144:2222//jibri/api/v1.0/health`
+
