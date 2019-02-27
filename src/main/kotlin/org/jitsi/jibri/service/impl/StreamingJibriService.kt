@@ -19,7 +19,7 @@ package org.jitsi.jibri.service.impl
 
 import net.java.sip.communicator.impl.protocol.jabber.extensions.jibri.JibriIq
 import org.jitsi.jibri.capture.ffmpeg.FfmpegCapturer
-import org.jitsi.jibri.config.XmppCredentials
+//import org.jitsi.jibri.config.XmppCredentials
 import org.jitsi.jibri.selenium.CallParams
 import org.jitsi.jibri.selenium.JibriSelenium
 import org.jitsi.jibri.selenium.RECORDING_URL_OPTIONS
@@ -86,8 +86,7 @@ class StreamingJibriService(
 
     override fun start() {
         jibriSelenium.joinCall(
-                streamingParams.callParams.callUrlInfo.copy(urlParams = RECORDING_URL_OPTIONS),
-                streamingParams.callLoginParams)
+                streamingParams.callParams.callUrlInfo.copy(urlParams = RECORDING_URL_OPTIONS))
 
         whenever(jibriSelenium).transitionsTo(ComponentState.Running) {
             logger.info("Selenium joined the call, starting capturer")
