@@ -125,10 +125,13 @@ class JibriSelenium(
         System.setProperty("webdriver.chrome.logfile", "/tmp/chromedriver.log")
         val chromeOptions = ChromeOptions()
         chromeOptions.addArguments(
+                "--autoplay-policy=no-user-gesture-required",
                 "--use-fake-ui-for-media-stream",
                 "--start-maximized",
                 "--kiosk",
                 "--enabled",
+                "--enable-logging",
+                "--vmodule=*=3",
                 "--disable-infobars",
                 "--alsa-output-device=plug:amix",
                 "--use-fake-device-for-media-stream",
