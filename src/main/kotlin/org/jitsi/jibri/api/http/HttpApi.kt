@@ -21,13 +21,8 @@ import org.jitsi.jibri.FileRecordingRequestParams
 import org.jitsi.jibri.JibriBusyException
 import org.jitsi.jibri.JibriManager
 import org.jitsi.jibri.RecordingSinkType
-<<<<<<< HEAD
-import org.jitsi.jibri.StartServiceResult
-//import org.jitsi.jibri.config.XmppCredentials
-=======
 import org.jitsi.jibri.config.XmppCredentials
 import org.jitsi.jibri.health.JibriHealth
->>>>>>> master
 import org.jitsi.jibri.selenium.CallParams
 import org.jitsi.jibri.service.ServiceParams
 import org.jitsi.jibri.service.impl.SipGatewayServiceParams
