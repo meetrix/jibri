@@ -39,12 +39,16 @@ import org.glassfish.jersey.test.JerseyTest
 import org.jitsi.jibri.CallUrlInfo
 import org.jitsi.jibri.JibriManager
 import org.jitsi.jibri.RecordingSinkType
-import org.jitsi.jibri.StartServiceResult
-//import org.jitsi.jibri.config.XmppCredentials
+import org.jitsi.jibri.config.XmppCredentials
 import org.jitsi.jibri.health.EnvironmentContext
 import org.jitsi.jibri.health.JibriHealth
 import org.jitsi.jibri.selenium.CallParams
 import org.jitsi.jibri.service.ServiceParams
+import org.jitsi.jibri.status.ComponentBusyStatus
+import org.jitsi.jibri.status.ComponentHealthStatus
+import org.jitsi.jibri.status.JibriStatus
+import org.jitsi.jibri.status.JibriStatusManager
+import org.jitsi.jibri.status.OverallHealth
 import javax.ws.rs.client.Entity
 import javax.ws.rs.core.Application
 import javax.ws.rs.ext.ContextResolver
@@ -58,6 +62,7 @@ fun containStr(str: String) = object : Matcher<String> {
 
 class HttpApiTest : ShouldSpec() {
     private val jibriManager: JibriManager = mock()
+    private val jibriStatusManager: JibriStatusManager = mock()
     private lateinit var jerseyTest: JerseyTest
 
     override fun beforeSpec(description: Description, spec: Spec) {
@@ -67,10 +72,10 @@ class HttpApiTest : ShouldSpec() {
                 return ResourceConfig(object : ResourceConfig() {
                     init {
                         // Uncommenting the following line can help with debugging any errors
-                        //property(LoggingFeature.LOGGING_FEATURE_LOGGER_LEVEL_SERVER, "WARNING")
+                        // property(LoggingFeature.LOGGING_FEATURE_LOGGER_LEVEL_SERVER, "WARNING")
                         register(ContextResolver<ObjectMapper> { ObjectMapper().registerKotlinModule() })
                         register(JacksonFeature::class.java)
-                        registerInstances(HttpApi(jibriManager))
+                        registerInstances(HttpApi(jibriManager, jibriStatusManager))
                     }
                 })
             }
@@ -86,13 +91,21 @@ class HttpApiTest : ShouldSpec() {
     init {
         "health" {
             "when jibri isn't busy" {
-                val expectedHealth = JibriHealth(busy = false)
-                whenever(jibriManager.healthCheck())
-                    .thenReturn(expectedHealth)
+                val expectedStatus =
+                        JibriStatus(ComponentBusyStatus.IDLE, OverallHealth(ComponentHealthStatus.HEALTHY, mapOf()))
+                val expectedHealth = JibriHealth(expectedStatus)
+
+                whenever(jibriManager.currentEnvironmentContext)
+                    .thenReturn(null)
+                whenever(jibriStatusManager.overallStatus).thenReturn(expectedStatus)
+
                 val res = jerseyTest.target("/jibri/api/v1.0/health").request()
                     .get()
-                should("call JibriManager#healthCheck") {
-                    verify(jibriManager).healthCheck()
+                should("call JibriStatusManager#overallStatus") {
+                    verify(jibriStatusManager)
+                }
+                should("call JibriManager#currentEnvironmentContext") {
+                    verify(jibriManager).currentEnvironmentContext
                 }
                 should("return a status of 200") {
                     res.status shouldBe 200
@@ -107,12 +120,14 @@ class HttpApiTest : ShouldSpec() {
                 }
             }
             "when jibri is busy and has an environmentContext" {
-                val expectedHealth = JibriHealth(
-                    busy = true,
-                    environmentContext = EnvironmentContext("meet.jit.si")
-                )
-                whenever(jibriManager.healthCheck())
-                    .thenReturn(expectedHealth)
+                val expectedStatus =
+                        JibriStatus(ComponentBusyStatus.BUSY, OverallHealth(ComponentHealthStatus.HEALTHY, mapOf()))
+                val expectedEnvironmentContext = EnvironmentContext("meet.jit.si")
+                val expectedHealth = JibriHealth(expectedStatus, expectedEnvironmentContext)
+
+                whenever(jibriManager.currentEnvironmentContext).thenReturn(expectedEnvironmentContext)
+                whenever(jibriStatusManager.overallStatus).thenReturn(expectedStatus)
+
                 val res = jerseyTest.target("/jibri/api/v1.0/health").request()
                     .get()
                 should("return a status of 200") {
@@ -135,7 +150,7 @@ class HttpApiTest : ShouldSpec() {
                     any(),
                     anyOrNull(),
                     anyOrNull())
-                ).thenReturn(StartServiceResult.SUCCESS)
+                ).thenAnswer { }
                 val startServiceRequest = StartServiceParams(
                     sessionId = "session_id",
                     callParams = CallParams(

@@ -23,7 +23,9 @@ import org.openqa.selenium.support.PageFactory
 import java.util.logging.Logger
 
 /**
- * Page object representing the in-call page on a jitsi-meet server
+ * Page object representing the in-call page on a jitsi-meet server.
+ * NOTE that all the calls here which execute javascript may throw (if, for example, chrome has crashed).  It is
+ * intentional that this exceptions are propagated up: the caller should handle those cases.
  */
 class CallPage(driver: RemoteWebDriver) : AbstractPageObject(driver) {
     private val logger = Logger.getLogger(this::class.qualifiedName)
@@ -75,6 +77,27 @@ class CallPage(driver: RemoteWebDriver) : AbstractPageObject(driver) {
             is Long -> result
             else -> 1
         }
+    }
+
+    @Suppress("UNCHECKED_CAST")
+    private fun getStats(): Map<String, Any?> {
+        val result = driver.executeScript("""
+            try {
+                return APP.conference.getStats();
+            } catch (e) {
+                return e.message;
+            }
+        """.trimMargin())
+        if (result is String) {
+            return mapOf()
+        }
+        return result as Map<String, Any?>
+    }
+
+    @Suppress("UNCHECKED_CAST")
+    fun getBitrates(): Map<String, Any?> {
+        val stats = getStats()
+        return stats.getOrDefault("bitrate", mapOf<String, Any?>()) as Map<String, Any?>
     }
 
     fun injectParticipantTrackerScript(): Boolean {

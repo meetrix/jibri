@@ -1,5 +1,5 @@
 /*
- * Copyright @ 2018 Atlassian Pty Ltd
+ * Copyright @ 2018 - present 8x8, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -12,20 +12,22 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- *
  */
 
 package org.jitsi.jibri.util
 
-import java.util.concurrent.ThreadFactory
+import org.jitsi.jibri.status.ComponentState
 
-/**
- * A helper to create a [ThreadFactory] where all threads will
- * be given [name]
- */
-class NameableThreadFactory(private val name: String) : ThreadFactory {
-    private var threadNum = 1
-    override fun newThread(r: Runnable?): Thread {
-        return Thread(r, "$name-${threadNum++}")
+abstract class NotifyingStateMachine {
+    private val stateTranstionHandlers = mutableListOf<(ComponentState, ComponentState) -> Unit>()
+
+    protected fun notify(fromState: ComponentState, toState: ComponentState) {
+        stateTranstionHandlers.forEach { handler ->
+            handler(fromState, toState)
+        }
+    }
+
+    fun onStateTransition(handler: (ComponentState, ComponentState) -> Unit) {
+        stateTranstionHandlers.add(handler)
     }
 }

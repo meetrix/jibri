@@ -19,6 +19,7 @@ package org.jitsi.jibri.health
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect
 import com.fasterxml.jackson.annotation.JsonInclude
+import org.jitsi.jibri.status.JibriStatus
 
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
 data class EnvironmentContext(
@@ -31,7 +32,7 @@ data class JibriHealth(
     /**
      * Whether or not this Jibri is "busy". See [JibriManager#busy]
      */
-    private val busy: Boolean,
+    private val status: JibriStatus,
     /**
      * Context for the environment Jibri is currently active on
      * (only present if [busy] is true)
