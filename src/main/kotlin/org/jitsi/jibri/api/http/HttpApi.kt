@@ -21,7 +21,7 @@ import org.jitsi.jibri.FileRecordingRequestParams
 import org.jitsi.jibri.JibriBusyException
 import org.jitsi.jibri.JibriManager
 import org.jitsi.jibri.RecordingSinkType
-import org.jitsi.jibri.config.XmppCredentials
+//import org.jitsi.jibri.config.XmppCredentials
 import org.jitsi.jibri.health.JibriHealth
 import org.jitsi.jibri.selenium.CallParams
 import org.jitsi.jibri.service.ServiceParams
@@ -113,7 +113,7 @@ class HttpApi(
                 serviceLauncher {
                     jibriManager.startFileRecording(
                             ServiceParams(usageTimeoutMinutes = 0),
-                            FileRecordingRequestParams(startServiceParams.callParams, startServiceParams.sessionId, callLoginParams),
+                            FileRecordingRequestParams(startServiceParams.callParams, startServiceParams.sessionId),
                             environmentContext = null
                     )
                 }
@@ -125,7 +125,7 @@ class HttpApi(
                 serviceLauncher {
                     jibriManager.startStreaming(
                             ServiceParams(usageTimeoutMinutes = 0),
-                            StreamingParams(startServiceParams.callParams, startServiceParams.sessionId, callLoginParams, youTubeStreamKey),
+                            StreamingParams(startServiceParams.callParams, startServiceParams.sessionId, youTubeStreamKey),
                             environmentContext = null
                     )
                 }
