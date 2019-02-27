@@ -109,15 +109,7 @@ class HttpApi(
         return when (startServiceParams.sinkType) {
             RecordingSinkType.FILE -> {
                 // If it's a file recording, it must have the callLoginParams set
-<<<<<<< HEAD
-                //val callLoginParams = startServiceParams.callLoginParams ?: return@run StartServiceResult.ERROR
-                jibriManager.startFileRecording(
-                    ServiceParams(usageTimeoutMinutes = 0),
-                    FileRecordingRequestParams(startServiceParams.callParams, startServiceParams.sessionId/*, callLoginParams*/),
-                    environmentContext = null
-                )
-=======
-                val callLoginParams = startServiceParams.callLoginParams ?: return Response.status(Response.Status.PRECONDITION_FAILED).build()
+                //val callLoginParams = startServiceParams.callLoginParams ?: return Response.status(Response.Status.PRECONDITION_FAILED).build()
                 serviceLauncher {
                     jibriManager.startFileRecording(
                             ServiceParams(usageTimeoutMinutes = 0),
@@ -125,20 +117,11 @@ class HttpApi(
                             environmentContext = null
                     )
                 }
->>>>>>> master
             }
             RecordingSinkType.STREAM -> {
                 val youTubeStreamKey = startServiceParams.youTubeStreamKey ?: return Response.status(Response.Status.PRECONDITION_FAILED).build()
                 // If it's a stream, it must have the callLoginParams set
-<<<<<<< HEAD
-                // val callLoginParams = startServiceParams.callLoginParams ?: return@run StartServiceResult.ERROR
-                jibriManager.startStreaming(
-                    ServiceParams(usageTimeoutMinutes = 0),
-                    StreamingParams(startServiceParams.callParams, startServiceParams.sessionId/*, callLoginParams*/, youTubeStreamKey),
-                    environmentContext = null
-                )
-=======
-                val callLoginParams = startServiceParams.callLoginParams ?: return Response.status(Response.Status.PRECONDITION_FAILED).build()
+                //val callLoginParams = startServiceParams.callLoginParams ?: return Response.status(Response.Status.PRECONDITION_FAILED).build()
                 serviceLauncher {
                     jibriManager.startStreaming(
                             ServiceParams(usageTimeoutMinutes = 0),
@@ -146,7 +129,6 @@ class HttpApi(
                             environmentContext = null
                     )
                 }
->>>>>>> master
             }
             RecordingSinkType.GATEWAY -> {
                 // If it's a sip gateway, it must have sipClientParams set
