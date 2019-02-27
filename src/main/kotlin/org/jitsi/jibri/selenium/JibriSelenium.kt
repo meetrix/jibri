@@ -231,17 +231,17 @@ class JibriSelenium(
             try {
                 HomePage(chromeDriver).visit(callUrlInfo.baseUrl)
 
-               /* val localStorageValues = mutableMapOf(
-                        "displayname" to jibriSeleniumOptions.displayName,
-                        "email" to jibriSeleniumOptions.email,
-                        "callStatsUserName" to "jibri"
-                )
-                xmppCredentials?.let {
-                    localStorageValues["xmpp_username_override"] = "${xmppCredentials.username}@${xmppCredentials.domain}"
-                    localStorageValues["xmpp_password_override"] = xmppCredentials.password
-                }
-                setLocalStorageValues(localStorageValues)
-                */
+//               val localStorageValues = mutableMapOf(
+//                        "displayname" to jibriSeleniumOptions.displayName,
+//                        "email" to jibriSeleniumOptions.email,
+//                        "callStatsUserName" to "jibri"
+//                )
+//                xmppCredentials?.let {
+//                    localStorageValues["xmpp_username_override"] = "${xmppCredentials.username}@${xmppCredentials.domain}"
+//                    localStorageValues["xmpp_password_override"] = xmppCredentials.password
+//                }
+//                setLocalStorageValues(localStorageValues)
+
                 if (!CallPage(chromeDriver).visit(callUrlInfo.callUrl)) {
                     stateMachine.transition(SeleniumEvent.FailedToJoinCall)
                 } else {
