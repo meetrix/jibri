@@ -84,26 +84,10 @@ class StreamingJibriService(
         registerSubComponent(FfmpegCapturer.COMPONENT_ID, capturer)
     }
 
-<<<<<<< HEAD
-    override fun start(): Boolean {
-        if (!jibriSelenium.joinCall(
-                streamingParams.callParams.callUrlInfo.copy(urlParams = RECORDING_URL_OPTIONS)/*,
-                streamingParams.callLoginParams*/)
-        ) {
-            logger.error("Selenium failed to join the call")
-            return false
-        }
-        logger.info("Selenium joined the call")
-        if (!capturer.start(sink)) {
-            logger.error("Capturer failed to start")
-            return false
-        }
-=======
     override fun start() {
         jibriSelenium.joinCall(
                 streamingParams.callParams.callUrlInfo.copy(urlParams = RECORDING_URL_OPTIONS),
                 streamingParams.callLoginParams)
->>>>>>> master
 
         whenever(jibriSelenium).transitionsTo(ComponentState.Running) {
             logger.info("Selenium joined the call, starting capturer")

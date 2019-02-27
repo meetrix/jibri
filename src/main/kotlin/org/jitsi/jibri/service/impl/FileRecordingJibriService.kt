@@ -134,30 +134,9 @@ class FileRecordingJibriService(
             logger.error("Unable to write to ${fileRecordingParams.recordingDirectory}")
             publishStatus(ComponentState.Error(ErrorScope.SYSTEM, "Recordings directory is not writable"))
         }
-<<<<<<< HEAD
-        if (!jibriSelenium.joinCall(
-                fileRecordingParams.callParams.callUrlInfo.copy(urlParams = RECORDING_URL_OPTIONS)/*,
-                fileRecordingParams.callLoginParams*/)
-        ) {
-            logger.error("Selenium failed to join the call")
-            return false
-        }
-        if (!capturer.start(sink)) {
-            logger.error("Capturer failed to start")
-            return false
-        }
-        jibriSelenium.addToPresence("session_id", fileRecordingParams.sessionId)
-        jibriSelenium.addToPresence("mode", JibriIq.RecordingMode.FILE.toString())
-        jibriSelenium.sendPresence()
-        val processMonitor = createCaptureMonitor(capturer)
-        processMonitorTask = executor.scheduleAtFixedRate(processMonitor, 30, 10, TimeUnit.SECONDS)
-        return true
-    }
-=======
         jibriSelenium.joinCall(
                 fileRecordingParams.callParams.callUrlInfo.copy(urlParams = RECORDING_URL_OPTIONS),
                 fileRecordingParams.callLoginParams)
->>>>>>> master
 
         whenever(jibriSelenium).transitionsTo(ComponentState.Running) {
             logger.info("Selenium joined the call, starting the capturer")
