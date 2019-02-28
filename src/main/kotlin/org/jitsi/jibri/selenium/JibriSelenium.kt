@@ -246,7 +246,7 @@ class JibriSelenium(
                     stateMachine.transition(SeleniumEvent.FailedToJoinCall)
                 } else {
                     startRecurringCallStatusChecks()
-                    //addParticipantTracker()
+                    addParticipantTracker()
                     currCallUrl = callUrlInfo.callUrl
                     stateMachine.transition(SeleniumEvent.CallJoined)
                 }
