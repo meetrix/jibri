@@ -302,14 +302,15 @@ class JibriSelenium(
         private var numTimesEmpty = 0
         override fun run(callPage: CallPage): SeleniumEvent? {
             // >1 since the count will include jibri itself
-            if (callPage.getNumParticipants() > 1) {
-                numTimesEmpty = 0
-            } else {
-                numTimesEmpty++
-            }
-            if (numTimesEmpty >= 2) {
-                return SeleniumEvent.CallEmpty
-            }
+//            if (callPage.getNumParticipants() > 1) {
+//                numTimesEmpty = 0
+//            } else {
+//                numTimesEmpty++
+//            }
+//            if (numTimesEmpty >= 2) {
+//                return SeleniumEvent.CallEmpty
+//            }
+
             return null
         }
     }
