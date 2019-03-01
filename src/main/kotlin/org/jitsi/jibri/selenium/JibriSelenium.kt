@@ -321,14 +321,14 @@ class JibriSelenium(
             val bitrates = callPage.getBitrates()
             logger.info("Jibri client receive bitrates: $bitrates")
             val downloadBitrate = bitrates.getOrDefault("download", 0L) as Long
-            if (downloadBitrate == 0L) {
-                numTimesNoMedia++
-            } else {
-                numTimesNoMedia = 0
-            }
-            if (numTimesNoMedia >= 2) {
-                return SeleniumEvent.NoMediaReceived
-            }
+//            if (downloadBitrate == 0L) {
+//                numTimesNoMedia++
+//            } else {
+//                numTimesNoMedia = 0
+//            }
+//            if (numTimesNoMedia >= 2) {
+//                return SeleniumEvent.NoMediaReceived
+//            }
             return null
         }
     }
