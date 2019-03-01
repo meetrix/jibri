@@ -299,7 +299,7 @@ class JibriSelenium(
     }
 
     private class EmptyCallStatusCheck : CallStatusCheck {
-        private var numTimesEmpty = 0
+        //private var numTimesEmpty = 0
         override fun run(callPage: CallPage): SeleniumEvent? {
             // >1 since the count will include jibri itself
 //            if (callPage.getNumParticipants() > 1) {
@@ -318,9 +318,9 @@ class JibriSelenium(
     private class MediaReceivedStatusCheck(private val logger: Logger) : CallStatusCheck {
         private var numTimesNoMedia = 0
         override fun run(callPage: CallPage): SeleniumEvent? {
-            val bitrates = callPage.getBitrates()
-            logger.info("Jibri client receive bitrates: $bitrates")
-            val downloadBitrate = bitrates.getOrDefault("download", 0L) as Long
+           // val bitrates = callPage.getBitrates()
+            //logger.info("Jibri client receive bitrates: $bitrates")
+            //val downloadBitrate = bitrates.getOrDefault("download", 0L) as Long
 //            if (downloadBitrate == 0L) {
 //                numTimesNoMedia++
 //            } else {
