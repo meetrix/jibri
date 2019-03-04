@@ -202,4 +202,17 @@ class CallPage(driver: RemoteWebDriver) : AbstractPageObject(driver) {
             else -> true
         }
     }
+    fun isClassFinished(): Boolean {
+        val result = driver.executeScript("""
+            try {
+                return isClassFinished();
+            } catch (e) {
+                return e.message;
+            }
+        """.trimMargin())
+        return when (result) {
+            is String -> true
+            else -> false
+        }
+    }
 }

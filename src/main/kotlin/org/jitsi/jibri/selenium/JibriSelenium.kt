@@ -148,7 +148,8 @@ class JibriSelenium(
         // not cause Jibri to go unhealthy (like not receiving media when there are others in the call will).
         callStatusChecks = listOf(
             EmptyCallStatusCheck(),
-            MediaReceivedStatusCheck(logger)
+            MediaReceivedStatusCheck(logger),
+            ClassHasStopped(logger)
         )
         stateMachine.onStateTransition(this::onSeleniumStateChange)
     }
@@ -329,6 +330,20 @@ class JibriSelenium(
 //            if (numTimesNoMedia >= 2) {
 //                return SeleniumEvent.NoMediaReceived
 //            }
+            return null
+        }
+    }
+    private class ClassHasStopped(private val logger: Logger) : CallStatusCheck {
+        private var numTimesClassStop = 0
+        override fun run(callPage: CallPage): SeleniumEvent? {
+            if (callPage.isClassFinished()) {
+                numTimesClassStop++
+            } else {
+                numTimesClassStop = 0
+            }
+            if (numTimesClassStop >= 2) {
+                return SeleniumEvent.CallEmpty
+            }
             return null
         }
     }
