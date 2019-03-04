@@ -205,7 +205,7 @@ class CallPage(driver: RemoteWebDriver) : AbstractPageObject(driver) {
     fun isClassFinished(): Boolean {
         val result = driver.executeScript("""
             try {
-                return App.isClassFinished();
+                return App.isClassFinished;
             } catch (e) {
                 return e.message;
             }
