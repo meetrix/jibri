@@ -211,7 +211,7 @@ class CallPage(driver: RemoteWebDriver) : AbstractPageObject(driver) {
             }
         """.trimMargin())
         return when (result) {
-            is Boolean -> true
+            is Boolean -> result
             else -> false
         }
     }
