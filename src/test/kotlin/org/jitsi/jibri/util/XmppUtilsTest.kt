@@ -30,20 +30,20 @@ class XmppUtilsTest : ShouldSpec() {
                 val expected = CallUrlInfo("https://$baseDomain", "roomName")
                 val jid = JidCreate.entityBareFrom("${expected.callName}@$baseDomain")
                 should("convert to a call url correctly") {
-                    getCallUrlInfoFromJid(jid, "", baseDomain) shouldBe expected
+                    getCallUrlInfoFromJid(jid, "", baseDomain, baseDomain) shouldBe expected
                 }
             }
             "a roomjid with a subdomain that should be stripped" {
                 val expected = CallUrlInfo("https://$baseDomain", "roomName")
                 val jid = JidCreate.entityBareFrom("${expected.callName}@mucdomain.$baseDomain")
                 should("convert to a call url correctly") {
-                    getCallUrlInfoFromJid(jid, "mucdomain.", baseDomain) shouldBe expected
+                    getCallUrlInfoFromJid(jid, "mucdomain.", baseDomain, baseDomain) shouldBe expected
                 }
             }
             "a roomjid with a call subdomain" {
                 val expected = CallUrlInfo("https://$baseDomain/subdomain", "roomName")
                 val jid = JidCreate.entityBareFrom("${expected.callName}@mucdomain.subdomain.$baseDomain")
-                getCallUrlInfoFromJid(jid, "mucdomain.", baseDomain) shouldBe expected
+                getCallUrlInfoFromJid(jid, "mucdomain.", baseDomain, baseDomain) shouldBe expected
             }
             "a basic muc room jid, domain contains part to be stripped" {
                 // domain contains 'conference'
@@ -52,7 +52,7 @@ class XmppUtilsTest : ShouldSpec() {
                 val jid = JidCreate.entityBareFrom("${expected.callName}@conference.$conferenceBaseDomain")
                 should("convert to a call url correctly") {
                     // we want to strip the first conference from the jid
-                    getCallUrlInfoFromJid(jid, "conference", conferenceBaseDomain) shouldBe expected
+                    getCallUrlInfoFromJid(jid, "conference", conferenceBaseDomain,baseDomain) shouldBe expected
                 }
             }
         }
