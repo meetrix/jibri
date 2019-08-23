@@ -267,8 +267,8 @@ class XmppApi(
         val callUrlInfo = getCallUrlInfoFromJid(
             startIq.room,
             xmppEnvironment.stripFromRoomDomain,
+            xmppEnvironment.xmppDomain,
             xmppEnvironment.meetUrl
-            /* xmppEnvironment.xmppDomain*/
         )
         val appData = startIq.appData?.let {
             jacksonObjectMapper().readValue<AppData>(startIq.appData)
