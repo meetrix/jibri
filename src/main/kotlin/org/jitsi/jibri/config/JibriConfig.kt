@@ -47,6 +47,11 @@ data class XmppEnvironmentConfig(
      */
     @JsonProperty("xmpp_domain")
     val xmppDomain: String,
+     /**
+     * The base xmpp domain
+     */
+    @JsonProperty("meet_url")
+    val meetUrl: String,
     /**
      * The login information for the control API
      */

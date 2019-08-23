@@ -18,6 +18,8 @@
             ],
             // The xmpp domain we'll connect to on the XMPP server
             "xmpp_domain": "xmpp.domain",
+            // meet baseurl
+            "meet_url":"meet.domain",
             // Jibri will login to the xmpp server as a privileged user 
             "control_login": {
                 // The domain to use for logging in
